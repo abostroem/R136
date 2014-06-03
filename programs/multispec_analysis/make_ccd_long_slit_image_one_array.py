@@ -33,7 +33,6 @@ if __name__ == "__main__":
         if orientat > 0:  #right side up
             long_slit_img[0:height, i*width: (i+1)*width] = slit_img
         else: #upside down
-            #pass
             long_slit_img[1044 - height:, i*width: (i+1)*width] = np.rot90(slit_img, k = 2)  #Figure this out more scientifically?
     im = pyplot.imshow(long_slit_img, interpolation = 'nearest', vmin = 0, vmax = 100, cmap = 'bone')
 
