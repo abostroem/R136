@@ -506,7 +506,7 @@ def plot_final_star_match(image_file_wfc3, image_file_wfpc2, coord_file):
     pp.close()
     pyplot.close()
 
-def generate_multispec_input(coord_file, slit_num):
+def generate_multispec_input(coord_file, slit_num, cenwave):
     table_data = ascii.read(coord_file)
     indx = np.where(table_data['slit'].data == slit_num)[0]
     e = np.ones((len(indx),))*0.400
@@ -519,9 +519,9 @@ def generate_multispec_input(coord_file, slit_num):
     slit_mag = table_data['mag'].data[indx]
     data = Table([slit_id, x, slit_y, ra, dec, sed, e, slit_mag], names = ['ID', 'x', 'y', 'RA', 'DEC', 'sed', 'e(4405-5495)', 'wfpc2_f336w'])
     if slit_num < 10:
-        ascii.write(data, 'slit0{}_phot.dat'.format(slit_num), format = 'tab')
+        ascii.write(data, 'slit0{}_{}_phot.dat'.format(slit_num, cenwave), format = 'tab')
     else:
-        ascii.write(data, 'slit{}_phot.dat'.format(slit_num), format = 'tab')
+        ascii.write(data, 'slit{}_{}_phot.dat'.format(slit_num, cenwave), format = 'tab')
     
 def print_to_screen(what_to_print):
     print '#-----------------------------'
@@ -604,11 +604,14 @@ if __name__ == "__main__":
     #Make multispec input files
     #-----------------------------
 
-    print_to_screen('Match WFC3 stars to WFPC2 Hunter stars')
-    get_hunter_id_numbers('stis_wfc3_coords_mag.dat', 'f336w_63.7_cropped.fits', '/Users/bostroem/science/multispec/multi_spec_files/r136_f555w_wfpc2_images/u25y0105t_c0m.fits')
-    plot_final_star_match('f336w_63.7_cropped.fits', '/Users/bostroem/science/multispec/multi_spec_files/r136_f555w_wfpc2_images/u25y0105t_c0m.fits', 'final_list_w_hunter_id.dat')
-    print_to_screen('Make an _phot.dat file for each slit')
-    for i in range(1, 17, 1):
-        generate_multispec_input('final_list_w_hunter_id.dat', i)
+    #print_to_screen('Match WFC3 stars to WFPC2 Hunter stars')
+    #get_hunter_id_numbers('stis_wfc3_coords_mag.dat', 'f336w_63.7_cropped.fits', '/Users/bostroem/science/multispec/multi_spec_files/r136_f555w_wfpc2_images/u25y0105t_c0m.fits')
+    #plot_final_star_match('f336w_63.7_cropped.fits', '/Users/bostroem/science/multispec/multi_spec_files/r136_f555w_wfpc2_images/u25y0105t_c0m.fits', 'final_list_w_hunter_id.dat')
+    #print_to_screen('Make an _phot.dat file for each slit')
+    #for i in range(1, 17, 1):
+    #    generate_multispec_input('final_list_w_hunter_id.dat', i, 3936)
 
+    #-----------------------------
+    #Run cropping code
+    #-----------------------------
 
