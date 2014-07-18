@@ -43,4 +43,4 @@ def crop_ccd_images_to_1024(write_dir, data_dir, cenwave):
             ofile[1].data = new_img
 
 if __name__ == "__main__":
-    crop_ccd_images_to_1024('multispec/ccd_multispec/cropped_images', '12465_otfr20121109/ccd/', 3936)
+    crop_ccd_images_to_1024('multispec/ccd_multispec/cropped_images', '2014_dc_aas', 3936)
