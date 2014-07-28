@@ -1,0 +1,22 @@
+1. Copy files:
+	files.dat
+	idl_final_run2_phot5.pro
+	slit1_3936.phot
+	set_path.pro
+2. Create folder fits_in
+3. Copy cropped 1024x1024 fits combined dithered image (SE9_3936_combined_img.fits)
+4. Replace name in files.dat with SE9_3936_combined_img
+5. Rename slit01_3936_phot.dat to slit01_3936_phot1.dat
+5. Remove letters from slit01_3936_phot1.dat ID column
+6. Create folder out_phot1
+7. rename idl_final_run2_phot5.pro idl_test_run_phot1.pro
+8. In idl_test_run_phot1.pro: replace procedure name, DIR_OUT with out_phot1, phot file name, and COR_OUTPUT
+9. start idl 
+10. IDL> .compile idl_test_run_phot1
+11. IDL> idl_test_run_phot1
+12. For some reason 786 and 853 are not being extracted - let's work on the XD profile first
+
+
+There are still some stars not being extracted, but those are below the limiting magnitude.
+
+
