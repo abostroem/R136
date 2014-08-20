@@ -35,7 +35,7 @@ def crop_ccd_images_to_1024(write_dir, data_dir, cenwave):
         with fits.open(new_file, mode = 'update') as ofile:
             img = ofile[1].data
             orientat = ofile[1].header['orientat']
-            new_img = np.empty((1024, 1024))
+            new_img = np.zeros((1024, 1024))
             if orientat > 0: #right side up
                 new_img = img[:1024, :1024]
             else: #upside down
