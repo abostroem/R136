@@ -9,8 +9,8 @@ def crop_ccd_images_to_1024(write_dir, data_dir, cenwave):
     crop all combined dithered images to 1024x1024. This code assumes that files are named
     <slit>_cenwave_combined_img.fits where slit is e.g. SE9, SE8, etc.
 
-    Files taken at 180 degree rotation (NW files) are rotated to match the orientation of
-    the SE files and shifted to match the coordinates of the long slit image
+    Files taken at 180 degree rotation cropped to the same field of view as
+    match as the SE files. 
 
     Parameters
     -----------
