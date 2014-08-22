@@ -11,14 +11,14 @@ def clean_output_dir(output_dir):
             os.remove(ifile)
     else:
         os.makedirs(output_dir)
-def run_astrodrizzle(rot_angle):
+def run_astrodrizzle(rot_angle, plate_scale):
     os.chdir('/Users/bostroem/science/images/astrodrizzle_wfc3_ccd_platescale')
     os.environ['iref'] = '/Users/bostroem/science/images/astrodrizzle_wfc3_ccd_platescale/iref/'
     output_dir = os.path.join(os.getcwd(), '{:3.2f}_rot'.format(rot_angle))+'/'
     clean_output_dir(output_dir)
     now = datetime.today()
     print now
-    drizzlepac.astrodrizzle.AstroDrizzle('*flt.fits', configobj='astrodrizzle_default.cfg', final_rot = rot_angle)
+    drizzlepac.astrodrizzle.AstroDrizzle('*flt.fits', configobj='astrodrizzle_default.cfg', final_rot = rot_angle, final_scale = plate_scale)
     flist = glob.glob('*.???') + glob.glob('*.????')
     for ifile in flist:
         modification_date = datetime.fromtimestamp(os.stat(ifile).st_mtime)
@@ -30,4 +30,4 @@ def run_astrodrizzle(rot_angle):
         os.chmod(ifile, 0770)
             
 if __name__ == "__main__":
-    run_astrodrizzle(63.6)
+    run_astrodrizzle(63.6, 0.05078)
